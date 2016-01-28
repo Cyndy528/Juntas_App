@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :get_user, except: [:new, :create, :index]
   
   def index
-    @user = User.new
+    @users = User.all
   end
 
   def create
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
         redirect_to welcome_index
         end 
       end 
+    end 
 
   def show
     if current_user 
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
     else 
       redirect_to welcome_index
   end
+ end 
 
   def edit
     if current_user
@@ -47,6 +49,8 @@ end
         redirect_to user_path(@user)
       else 
         redirect_to edit_user_path
+      end 
+    end 
   end 
 
   def update
@@ -56,8 +60,9 @@ end
         redirect_to root_path
       else
       redirect_to user_path(current_user) 
+      end 
+    end 
   end 
-
 
 private 
 
@@ -69,3 +74,4 @@ private
     @user = User.find_by_id(params[:id])
   end 
 end 
+
