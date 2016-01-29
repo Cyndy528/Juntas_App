@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :paperclip_images
   get 'welcome/index'
 
   root to: 'welcome#index'
