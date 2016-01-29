@@ -13,14 +13,13 @@ class UsersController < ApplicationController
     end
     @user = User.new(updated_user_params)
       if @user.save 
-      session[:user_id] = @user.id 
-        if user 
+        session[:user_id] = @user.id 
         redirect_to user_path(@user)
-        else 
+      else 
         redirect_to welcome_index
-        end 
       end 
     end 
+  end 
 
   def show
     if current_user 
@@ -31,8 +30,7 @@ class UsersController < ApplicationController
  end 
 
   def edit
-    if current_user
-      if current_user ==@user
+    if current_user == @user
         @user = current_user
       else 
         redirect_to user_path(current_user)
@@ -55,14 +53,23 @@ end
 
   def update
     if current_user == @user 
+      @user = current_user
+    else 
+      redirect_to edit_user_path    
+    end 
+  end 
+
+  def destroy 
+    if current_user == @user
       if @user.destroy
         session[:user_id] = nil
         redirect_to root_path
-      else
-      redirect_to user_path(current_user) 
+      else 
+        redirect_to user_path(current_user)
       end 
     end 
   end 
+
 
 private 
 
