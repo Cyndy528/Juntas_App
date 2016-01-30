@@ -1,22 +1,22 @@
 class SessionsController < ApplicationController
   def new
-  	@signup_login_page = true
   	if current_user
   		redirect_to user_path(current_user)
   	end 
   end
 
   def create
-  	@user = User.find_by_email(params[:email])
-  		if @user && @user.authenticate(params[:password])
-  			session[:user_id] = @user.id		
-  		else 
-				redirect_to user_path(current_user)
-  		end
+  	@user = User.find_by_email(user_params[:email])
+  	if @user && @user.authenticate(user_params[:password])
+  		session[:user_id] = @user.id		
+			redirect_to user_path(current_user)
+    else 
+      redirect_to login_path
+  	end
   end 
 
   def destroy
-  	session[:usesr_id] = nil 
+  	session[:user_id] = nil 
   	redirect_to root_path
   end
 
