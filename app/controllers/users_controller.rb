@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def new
+    @user = User.new
+  end 
+
   def create
     if !current_user
       updated_user_params = user_params 
@@ -24,21 +28,20 @@ class UsersController < ApplicationController
   def show
     if current_user 
       @user = User.find(params[:id])
+      render :show
     else 
       redirect_to welcome_index
-  end
+    end
  end 
 
   def edit
+    @user = User.find(params[:id])
     if current_user == @user
-        @user = current_user
-      else 
-        redirect_to user_path(current_user)
-      end 
+      render :edit
     else 
       redirect_to welcome_index
-  end
-end
+    end
+  end 
 
   def update
     if current_user == @user 
@@ -48,14 +51,6 @@ end
       else 
         redirect_to edit_user_path
       end 
-    end 
-  end 
-
-  def update
-    if current_user == @user 
-      @user = current_user
-    else 
-      redirect_to edit_user_path    
     end 
   end 
 
@@ -80,5 +75,4 @@ private
   def get_user
     @user = User.find_by_id(params[:id])
   end 
-end 
 
