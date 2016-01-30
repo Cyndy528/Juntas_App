@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id 
         redirect_to user_path(@user)
       else 
-        redirect_to welcome_index
+        redirect_to root_path
       end 
     end 
   end 
@@ -28,9 +28,8 @@ class UsersController < ApplicationController
   def show
     if current_user 
       @user = User.find(params[:id])
-      render :show
     else 
-      redirect_to welcome_index
+      redirect_to root_path
     end
  end 
 
@@ -39,7 +38,7 @@ class UsersController < ApplicationController
     if current_user == @user
       render :edit
     else 
-      redirect_to welcome_index
+      redirect_to root_path
     end
   end 
 
