@@ -23,33 +23,16 @@
 				<p><strong>Image<strong><p>
         <%= f.file_field :avatar %>
       </div>  
-			<div class="container">
-			<%= label_tag 'interests_html', 'HTML' %>
-			<%= check_box_tag 'user[interests][]', 'HTML', checked('CSS'), id: 'interests_html' %>
-
-			<%= label_tag 'expertise_css', 'CSS' %>
-			<%= check_box_tag 'user[interests][]', 'CSS', checked('CSS'), id: 'interests_css' %>
-
-			<form role="form">
-			  <div class="checkbox">
-			    <label><input type="checkbox" value="">HTML</label>
+			<div class="field">
+				<%= f.label "Interests" %><br />
+				<%= f.collection_check_boxes :interest_id, Interests.all, :id, :name do |interest| %>
+			  <div class="collection-check-box">
+			    <%= b.check_box %>
+			    <%= b.label %>
 			  </div>
-			  <div class="checkbox">
-			    <label><input type="checkbox" value="">CSS</label>
-			  </div>
-			  <div class="checkbox disabled">
-			    <label><input type="checkbox" value="">JavaScript</label>
-			  </div>
-			  <div class="checkbox disabled">
-			    <label><input type="checkbox" value="">Ruby on Rails</label>
-			  </div>
-			  <div class="checkbox disabled">
-			    <label><input type="checkbox" value="">Angular</label>
-			  </div>			  			  
-			</form>
+				<% end %>
 			</div>
-
-			<%= f.submit "Become A Member", class: "btn btn-warning"%>
-		<% end %> 
-	</div>
+					<%= f.submit "Become A Member", class: "btn btn-warning"%>
+				<% end %> 
+			</div>
 </div>

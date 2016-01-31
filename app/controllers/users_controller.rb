@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   def create
     if !current_user
       updated_user_params = user_params 
-      end
       @user = User.new(updated_user_params)
     if @user.save 
       session[:user_id] = @user.id 
@@ -22,9 +21,9 @@ class UsersController < ApplicationController
     else 
       flash[:error] = @user.errors.full_messages.join(", ")
       redirect_to signup_path 
-    end 
-  else 
-  end 
+    end  
+    end
+end  
 
   def show
     if current_user 
@@ -32,7 +31,7 @@ class UsersController < ApplicationController
     else 
       redirect_to root_path
     end
- end 
+  end 
 
   def edit
     if current_user 
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
         @user = current_user
     else 
       redirect_to user_path(current_user)
-    end
+    end 
     else
       redirect_to root_path
     end 
@@ -57,8 +56,7 @@ class UsersController < ApplicationController
         redirect_to edit_user_path
       end
     end
-  end
-
+  end 
 
   def destroy 
     if current_user == @user
@@ -72,7 +70,7 @@ class UsersController < ApplicationController
   private 
 
     def user_params
-      params.require(:user).permit(:full_name, :email, :avatar, :password, interest_ids:[], :bio)
+      params.require(:user).permit(:full_name, :email, :avatar, :password, :bio)
     end 
 
     def get_user
