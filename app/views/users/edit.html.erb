@@ -2,7 +2,7 @@
 	<div class="col-md-6 col-md-offset-3">
 		<h1 align="center">Edit Profile</h1>
 		<hr>
-		<%= form_for @user do |f|%>
+		<%= form_for :user, url: user_path(@user), method: :patch, html: { multipart: true } do |f| %>
 			<div class="form-group">
 				<%= f.label :full_name, "Name" %>
 				<%= f.text_field :full_name, autofocus: true, class: "form-control"%> 
@@ -15,6 +15,11 @@
 				<%= f.label :bio, "Bio" %>
 				<%= f.text_area :bio, class: "form-control"%> 
 			</div>
+			<div class="input-group">
+        <p>Image<p>
+        <%= f.file_field :avatar %>
+        </br>  
+      </div>
 			<%= f.submit "Edit Profile", class: "btn btn-warning"%>
 		<% end %> 
 	</div>

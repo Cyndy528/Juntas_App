@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else 
       flash[:error] = @user.errors.full_messages.join(", ")
-      redirect_to root_path 
+      redirect_to signup_path 
     end 
   else 
   end 
@@ -35,16 +35,19 @@ class UsersController < ApplicationController
  end 
 
   def edit
-    @user = User.find(params[:id])
-    if current_user == @user
-      render :edit
+    if current_user 
+      if current_user == @user
+        @user = current_user
     else 
-      redirect_to root_path
+      redirect_to user_path(current_user)
     end
+    else
+      redirect_to root_path
+    end 
   end 
 
   def update
-    if current_user == @user 
+    if current_user == @user
       @user = current_user
       if @user.update_attributes(user_params)
         redirect_to user_path(@user)
@@ -52,9 +55,10 @@ class UsersController < ApplicationController
       else 
         flash[:error] = @user.error.full_messages.join(", ")
         redirect_to edit_user_path
-      end 
-    end 
-  end 
+      end
+    end
+  end
+
 
   def destroy 
     if current_user == @user
@@ -68,7 +72,7 @@ class UsersController < ApplicationController
   private 
 
     def user_params
-      params.require(:user).permit(:full_name, :email, :avatar, :password, :interests, :bio, :slug)
+      params.require(:user).permit(:full_name, :email, :avatar, :password, :interests, :bio)
     end 
 
     def get_user
