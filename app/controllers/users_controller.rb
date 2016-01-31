@@ -14,14 +14,16 @@ class UsersController < ApplicationController
   def create
     if !current_user
       updated_user_params = user_params 
-    end
-    @user = User.new(updated_user_params)
+      end
+      @user = User.new(updated_user_params)
     if @user.save 
       session[:user_id] = @user.id 
       redirect_to user_path(@user)
     else 
+      flash[:error] = @user.errors.full_messages.join(", ")
       redirect_to root_path 
     end 
+  else 
   end 
 
   def show
@@ -46,7 +48,9 @@ class UsersController < ApplicationController
       @user = current_user
       if @user.update_attributes(user_params)
         redirect_to user_path(@user)
+        flash[:notice] = "Your profile has been updated!"
       else 
+        flash[:error] = @user.error.full_messages.join(", ")
         redirect_to edit_user_path
       end 
     end 
@@ -55,6 +59,7 @@ class UsersController < ApplicationController
   def destroy 
     if current_user == @user
        @user.destroy
+       flash[:notice] = "Your Account has been deleted"
         session[:user_id] = nil
         redirect_to root_path
     end 
