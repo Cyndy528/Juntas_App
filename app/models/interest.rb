@@ -1,5 +1,4 @@
 class Interest < ActiveRecord::Base
-	has_many :user_interests, dependent: :destroy
-	has_many :users, through: :user_interests 
+	has_and_belongs_to_many :users, dependent: :destroy
 	
 end
