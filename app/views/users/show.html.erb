@@ -5,9 +5,9 @@
 		<h3 align="center"><%= @user.bio %></h3>
 		<%= image_tag @user.avatar(:medium) %>
 		<h4 class="text-center"> Joined on <%= @user.created_at.to_date.to_formatted_s(:long_ordinal) %></h4>
-		<h3 align="center"><% @interests.name %></h3>
-			<br>
-			<br>
+		<br>
+	
+		<h3 align="center">Interests</h3>
 	</div>
 </div>
 

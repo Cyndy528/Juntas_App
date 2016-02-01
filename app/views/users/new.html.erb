@@ -19,20 +19,20 @@
 				<%= f.label :bio, "Bio" %>
 				<%= f.text_area :bio, class: "form-control"%> 
 			</div>
-			<div class="input-field">
+			<div class="form_row">
+			  <label for="interests[]">Interests:</label>
+			  <br><%= check_box_tag 'interests[]', 'html' %> HTML
+			  <br><%= check_box_tag 'interests[]', 'css' %> CSS
+			  <br><%= check_box_tag 'interests[]', 'node.js' %> Node.JS
+			  <br><%= check_box_tag 'interests[]', 'javascript' %> JavaScriipt
+			  <br><%= check_box_tag 'interests[]', 'ruby' %> Ruby
+			  <br><%= check_box_tag 'interests[]', 'angular' %> Angular
+			  <br><%= check_box_tag 'interests[]', 'swift' %> Swift
+			</div>
+			<div> 
 				<p><strong>Image<strong><p>
         <%= f.file_field :avatar %>
-      </div>  
-			<div class="field">
-				<%= f.label "Interests" %><br />
-				<%= f.collection_check_boxes :interest_id, Interests.all, :id, :name do |interest| %>
-			  <div class="collection-check-box">
-			    <%= b.check_box %>
-			    <%= b.label %>
-			  </div>
-				<% end %>
-			</div>
-					<%= f.submit "Become A Member", class: "btn btn-warning"%>
+      </div> 
+				<%= f.submit "Become A Member", class: "btn btn-warning"%>
 				<% end %> 
-			</div>
 </div>

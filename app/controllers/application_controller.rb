@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless current_user
   end
 
+  def find_user_interests
+    @user_interests = current_user ? current_user.interests : []  
+    true
+  end
+
 end
