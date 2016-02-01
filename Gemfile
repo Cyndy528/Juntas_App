@@ -35,6 +35,9 @@ gem 'autoprefixer-rails'
 #paperclip 
 gem "paperclip", "~> 4.3"
 
+#ransack
+gem 'ransack'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

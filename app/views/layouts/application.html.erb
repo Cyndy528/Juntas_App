@@ -4,35 +4,48 @@
   <title>Juntas</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </head>
 <body>
 <!-- navbar -->
-  <nav class="navbar navbar-default">
+  <nav id ="nav" class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-       <!--  <%= image_tag "JuntasLogo.png", class: "logo pull-left" %> -->
+        <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-navbar'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button> 
       </div>
-      <ul class="nav navbar-nav navbar-right">
+      <div class='navbar-collapse collapse' id='main-navbar'>
+        <ul class='nav navbar-nav pull-right'>
         <% if current_user %>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.full_name %><span class="caret"></span></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.full_name %><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Your Profile", user_path(current_user), class: "btn btn-danger"%></li>
             <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-success" %></li>
-            <li><%= link_to "Logout", logout_path, class: "nav-links", class: "btn btn-danger" %></li>
             <li><%= link_to 'Delete Profile', user_path(current_user), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>  
-            </li>
+            <li><%= link_to "Logout", logout_path, class: "nav-links", class: "btn btn-danger" %></li>
+            <% end %>
           </ul>
         </li>
-        <% else %>
+        <ul> 
+        <% else %> 
+        <% if params[:controller] == "sessions" %>
         <li><%= link_to "Signup", signup_path, class: "nav-links" %></li>
-        <li><%= link_to "Login", login_path, class: "nav-links" %></li>
+        <% else %>
+        <% if !current_user %>
+        <li><%= link_to 'Login', login_path, class: "nav-links" %> 
+        <li><%= link_to "Signup", signup_path, class: "nav-links" %></li>
+        </li>
         <% end %>
+        <% end %> 
+        </ul> 
       </ul>
     </div>
+    </div> 
   </nav>
   <!-- error message -->
   <% flash.each do |name, msg| %>
@@ -42,12 +55,18 @@
       </div>
     </div>
   <% end %>
+		
+    <%= yield %>
 
+	 <%= javascript_include_tag 'application' %>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
 
-		<%= yield %>
-
-	<%= javascript_include_tag 'application' %>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html> 
+
+

@@ -18,12 +18,13 @@ Peach: #faa978*/
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+
  #logo {
  	padding-top: 40px;
  	padding-bottom: 40px; 
  }
 
-li {
+ul.main-nav {
 	display: inline; 
 	padding: 70px;
 	font-size: 20px;
@@ -67,10 +68,6 @@ ul.nav.navbar-nav.pull-right {
     color: #00d6ff;
 }
 
-.navbar-default .nav > li>a:hover,
-.navbar-default .nav>li>a:focus:hover {
-    color: #faa978;
-}
 
 .navbar-default .nav > li.active>a,
 .navbar-default .nav>li.active>a:focus {

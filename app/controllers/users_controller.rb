@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @search = User.ransack(params[:search])
+    @users = @search.result(distinct: true)
   end
 
   def new
@@ -49,6 +51,12 @@ end
     if current_user == @user
       @user = current_user
       if @user.update_attributes(user_params)
+        params[:interests].each do |i|
+          interest = Interest.find_by(name: i)
+          unless @user.interests.include? interest
+            @user.interests << interest
+          end 
+        end
         redirect_to user_path(@user)
         flash[:notice] = "Your profile has been updated!"
       else 
