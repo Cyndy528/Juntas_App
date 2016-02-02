@@ -51,13 +51,12 @@ class UsersController < ApplicationController
   end 
 
   def update
-    if current_user == @user
-      @user = current_user
+      @user = User.find(params[:id])
       if @user.update_attributes(user_params)
         params[:interests].each do |i|
-          interest = Interest.find_by(name: i)
+          interests = Interest.find_by(name: i)
           unless @user.interests.include? interest
-            @user.interests << interest
+            @user.interests << interests
           end 
         end
         redirect_to user_path(@user)
@@ -87,4 +86,3 @@ class UsersController < ApplicationController
     def get_user
       @user = User.find_by_id(params[:id])
     end 
-end 
