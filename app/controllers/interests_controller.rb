@@ -10,9 +10,9 @@ class InterestsController < ApplicationController
 
   private 
 
-    def user_params
-      params.require(:user).permit(:full_name, :email, :avatar, :interests)
-    end 
+  	def user_params
+      params.require(:interest).permit(:name)
+    end
 
     def get_user
       @user = User.find_by_id(params[:id])

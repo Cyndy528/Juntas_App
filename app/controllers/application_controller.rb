@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     true
   end
 
-  def interests
+  def interest
     @current_user ||= Interest.find(session[:name]) if session[:user_id]
   end 
 

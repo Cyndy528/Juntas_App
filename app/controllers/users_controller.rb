@@ -51,12 +51,13 @@ class UsersController < ApplicationController
   end 
 
   def update
-      @user = User.find(params[:id])
+    if current_user == @user
+      @user = current_user
       if @user.update_attributes(user_params)
         params[:interests].each do |i|
-          interests = Interest.find_by(name: i)
+          interest = Interest.find_by(name: i)
           unless @user.interests.include? interest
-            @user.interests << interests
+            @user.interests << interest
           end 
         end
         redirect_to user_path(@user)
@@ -86,3 +87,8 @@ class UsersController < ApplicationController
     def get_user
       @user = User.find_by_id(params[:id])
     end 
+
+    def interest
+      params.require(:interests).permit(:name)
+    end 
+end 

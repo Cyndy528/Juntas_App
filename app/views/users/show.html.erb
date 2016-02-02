@@ -7,7 +7,8 @@
 		<h4 class="text-center"> Joined on <%= @user.created_at.to_date.to_formatted_s(:long_ordinal) %></h4>
 		<h3 align="center">Interests</h3>
 		<% @user.interests.each do |i| %>
-			<h3 align="center"><%= i.name %></h3>
+		<%= link_to i.name, interest_path(i) %></p>
+		
 		<% end %> 
 		<br>
 	</div>
