@@ -17,4 +17,13 @@ class ApplicationController < ActionController::Base
     true
   end
 
+  def interests
+    @current_user ||= Interest.find(session[:name]) if session[:user_id]
+  end 
+
+  before_filter :set_search
+
+  def set_search
+    @search = Interest.search(params[:interest])
+  end
 end

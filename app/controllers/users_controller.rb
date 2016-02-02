@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
-    @search = User.ransack(params[:search])
-    @users = @search.result(distinct: true)
   end
 
   def new
@@ -15,17 +13,22 @@ class UsersController < ApplicationController
 
   def create
     if !current_user
-      updated_user_params = user_params 
-      @user = User.new(updated_user_params)
-    if @user.save 
-      session[:user_id] = @user.id 
-      redirect_to user_path(@user)
-    else 
-      flash[:error] = @user.errors.full_messages.join(", ")
-      redirect_to signup_path 
+      @user = User.new(user_params)
+      if @user.save 
+        params[:interests].each do |i|
+          interest = Interest.find_by(name: i)
+          unless @user.interests.include? interest
+            @user.interests << interest
+          end 
+        end 
+        session[:user_id] = @user.id 
+        redirect_to user_path(@user)
+      else 
+        flash[:error] = @user.errors.full_messages.join(", ")
+        redirect_to signup_path 
+      end 
     end  
-    end
-end  
+  end  
 
   def show
     if current_user 

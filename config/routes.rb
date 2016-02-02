@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   
   resources :users, except: [:new]
   resources :sessions, only: [:create]
+  resources :interests, only: [:show]
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create' 
   get '/logout', to: 'sessions#destroy', as: 'logout'
   get '/signup', to: 'users#new', as:'signup'
-  
+  get '/interests', to: 'interests#show', as:'interests'
 
 
 end

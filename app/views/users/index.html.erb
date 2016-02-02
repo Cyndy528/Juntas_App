@@ -2,47 +2,11 @@
 	<div class="col-md-6 col-md-offset-3">
 		<h1 align="center">Members</h1>
 		<% @users.each do |user|%>
-			<p><%= link_to user.full_name, user_path(user) %></p>
-
-		<fieldset class="search-field">
-		  <legend>Search For Interests</legend>
-		  <%= search_form_for @user do |f| %>
-		    <div class="field">
-		      <%= f.label :name_cont, "Name contains" %>
-		      <%= f.text_field :name_cont %>
-		    </div>
-
-		    <div class="field">
-		      <%= f.label "Area of Interests" %><br />
-		      <%= f.collection_check_boxes :interests_id_in_any, Interests.all, :id, :name do |b| %>
-		        <div class="collection-check-box">
-		          <%= b.check_box %>
-		          <%= b.label %>
-		        </div>
-		      <% end %>
-		    </div>
-		    <div class="actions"><%= f.submit "Search" %></div>
-		  <% end %>
-		</fieldset>
-
+			<p><%= link_to user.full_name, user %></p>
+				<h3 align="center">Interests</h3>
+		<% user.interests.each do |interest| %>
+			<h3 align="center"><%= link_to interest.name, interest %></h3>
 		<% end %> 
-
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.expertises.map(&:name).sort.join(", ") %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
+	<% end %> 
 	</div>
 </div>
-
