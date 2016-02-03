@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
                       s3_credentials: Proc.new { |a| a.instance.s3_credentials },
                       s3_host_name: 's3-us-west-2.amazonaws.com',
                       path: "users/:id/:style/image.:extension",
-                      default_url: "https://s3-us-west-2.amazonaws.com/toybinwdi24/missing.png" 
+                      default_url: ""
                       
 	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	has_many :user_interests, dependent: :destroy
