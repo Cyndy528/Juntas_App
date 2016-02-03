@@ -1,9 +1,16 @@
 class User < ActiveRecord::Base
 	has_secure_password 
 
-	has_attached_file :avatar, styles: { large: "500x500>", medium: "300x300>", thumb: "100x100>"}, default_url: "/images/:style/missing."
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-
+	has_secure_password
+	has_attached_file :avatar, 
+                      styles: { large: "500x500>", medium: "300x300>", thumb: "100x100>"}, 
+                      storage: :s3,
+                      s3_credentials: Proc.new { |a| a.instance.s3_credentials },
+                      s3_host_name: 's3-us-west-2.amazonaws.com',
+                      path: "users/:id/:style/image.:extension",
+                      default_url: "https://s3-us-west-2.amazonaws.com/toybinwdi24/missing.png" 
+                      
+	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	has_many :user_interests, dependent: :destroy
 	has_many :interests, through: :user_interests
 	 
@@ -14,5 +21,9 @@ class User < ActiveRecord::Base
 	before_save do
   self.interests.gsub!(/[\[\]\"]/, "") if attribute_present?("interests")
 	end
+
+	def s3_credentials
+  	{ :bucket => ENV['S3_BUCKET'], :access_key_id => ENV['S3_PUBLIC_KEY'], :secret_access_key => ENV['S3_SECRET'] }
+  end
 
 end

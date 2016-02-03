@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
+#env 
+gem 'dotenv-rails'
 
+gem 'aws-sdk', '~> 1.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -60,5 +63,6 @@ end
 group :production do
 	gem 'rails_12factor'
 end
+
 
 
