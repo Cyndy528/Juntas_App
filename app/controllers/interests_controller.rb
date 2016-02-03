@@ -1,10 +1,15 @@
 class InterestsController < ApplicationController
   
+  def new
+    @interest = Interest.new
+  end 
+
+
   def show
     if current_user 
       @interest = Interest.find_by_id(params[:id])
       @user = User.find_by_id(params[:id])
-     
+
     else 
       redirect_to user_path
     end
