@@ -15,10 +15,12 @@ class UsersController < ApplicationController
     if !current_user
       @user = User.new(user_params)
       if @user.save 
-        params[:interests].each do |i|
-          interest = Interest.find_by(name: i)
-          unless @user.interests.include? interest
-            @user.interests << interest
+        if params[:interests].present? 
+          params[:interests].each do |i|
+            interest = Interest.find_by(name: i)
+            unless @user.interests.include? interest
+              @user.interests << interest
+            end 
           end 
         end 
         session[:user_id] = @user.id 
@@ -54,12 +56,14 @@ class UsersController < ApplicationController
     if current_user == @user
       @user = current_user
       if @user.update_attributes(user_params)
-        params[:interests].each do |i|
-          interest = Interest.find_by(name: i)
-          unless @user.interests.include? interest
-            @user.interests << interest
-          end 
-        end
+        if params[:interests].present? 
+          params[:interests].each do |i|
+            interest = Interest.find_by(name: i)
+            unless @user.interests.include? interest
+              @user.interests << interest
+            end 
+          end
+        end 
         redirect_to user_path(@user)
         flash[:notice] = "Your profile has been updated!"
       else 

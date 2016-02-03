@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
                       styles: { large: "500x500>", medium: "300x300>", thumb: "100x100>"}, 
                       storage: :s3,
                       s3_credentials: Proc.new { |a| a.instance.s3_credentials },
-                      s3_host_name: 's3-us-west-2.amazonaws.com',
-                      path: "users/:id/:style/image.:extension",
+                      s3_host_name: 's3-us-west-1.amazonaws.com',
+                      path: "avatars/:id/:style/avatar.:extension",
                       default_url: ""
                       
 	validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
