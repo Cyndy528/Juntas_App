@@ -6,12 +6,12 @@
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <div class="caption" align="center">
+      		<% @interest.users.each do |e| %>
+						<p><%= image_tag e.avatar(:medium) %></p>
+						<% end %> 
         	<% @interest.users.each do |user| %> 
 						<p><%= link_to user.full_name, user_path(user) %></p>
 						<% end %>
-					<% @interest.users.each do |e| %>
-						<p><%= image_tag e.avatar(:medium) %></p>
-						<% end %> 
       </div>
     </div>
   </div>
