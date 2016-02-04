@@ -1,28 +1,34 @@
-== README
+#Juntas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Introduction
 
-Things you may want to cover:
+Juntas is a search engine for women in tech who would like to connect with other women in the field. Members can see each others profiles which includes their interests, a short bio and email address. Members can then filter the search and select those with similiar tech interests. Juntas provides a community for women to connect and inspire each other. 
 
-* Ruby version
+##Technologies
 
-* System dependencies
+**Backend:** Ruby on Rails, PostgreSQL, RSpec, JavaScript
 
-* Configuration
+**Frontend:** HTML, CSS, jQuery
 
-* Database creation
+**Additional Features:** LogoMakr, PaperClip, Heroku, Amazon Web Services 
 
-* Database initialization
+##Juntas
 
-* How to run the test suite
+https://juntas-in-tech.herokuapp.com/
 
-* Services (job queues, cache servers, search engines, etc.)
+![Juntas] (/images/Juntas_Screenshot.png)
 
-* Deployment instructions
+##Future Steps
 
-* ...
+I understand that Juntas is a work in progress and I hope I can add the following additions in the future: 
 
+* Add Facebook and Twitter Login 
+* Add pagination to the Interests and Member Pages
+* Include additional interests 
+* Allow members to insert videos on their profile page
+* Add a form to on the edit page to edit the password
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+##About The Founder 
+	
+[Cynthia Salinas](https://www.linkedin.com/in/cynthiagsalinas) - “Juntas (Translation in Spanish: "Together") we can do great things!”
+
