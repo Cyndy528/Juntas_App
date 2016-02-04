@@ -16,7 +16,7 @@ Juntas is a search engine for women in tech who would like to connect with other
 
 https://juntas-in-tech.herokuapp.com/
 
-![Juntas] (/images/Juntas_Screenshot.png)
+![Juntas](https://s3-us-west-1.amazonaws.com/myjuntasbucket/photos/Juntas_Screenshot.png)
 
 ##Future Steps
 
