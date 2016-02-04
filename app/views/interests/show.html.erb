@@ -1,14 +1,24 @@
-<div class="container" id="user_profile">
-	<div class="col-lg-12 text-center well">
-			<h1 align="center"><%= @interest.name %></h1>
-				<% @interest.users.each do |user| %> 
+<div class="container">
+  <div id="users_name" align="center">
+    <h1 align="center"><b><%= @interest.name %><b></h1>
+  </div>
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <div class="caption" align="center">
+        	<% @interest.users.each do |user| %> 
 						<p><%= link_to user.full_name, user_path(user) %></p>
 						<% end %>
-				<% @interest.users.each do |e| %>
-						<p><%= image_tag e.avatar(:thumb) %></p>
+					<% @interest.users.each do |e| %>
+						<p><%= image_tag e.avatar(:medium) %></p>
 						<% end %> 
-	</div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
 
 	
 

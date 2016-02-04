@@ -9,11 +9,11 @@
             <br>
             <h4> Member Since <br><%= @user.created_at.to_date.to_formatted_s(:long_ordinal) %></h4>
         </div>
-        <div id="profile_info" class="col-md-4">
+        <div id="profile_info" class="col-md-5">
             <h2 align="center"><em><u>About Me:</em></u></h2>
             <h3><%= @user.bio %></h3>  
         </div>
-        <div id="profile_info" class="col-md-4" align="center">
+        <div id="profile_info" class="col-md-3" align="center">
             <h2><em><u>Interests:</em></u></h2>
             <% @user.interests.each do |i| %>
             <h3><%= link_to i.name, interest_path(i) %></h3>
