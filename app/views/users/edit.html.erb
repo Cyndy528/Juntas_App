@@ -4,34 +4,36 @@
 		<hr>
 		<%= form_for :user, url: user_path(@user), method: :patch, html: { multipart: true } do |f| %>
 			<div class="form-group">
-				<%= f.label :full_name, "Name" %>
+				<%= f.label :full_name, "Full Name:" %>
 				<%= f.text_field :full_name, autofocus: true, class: "form-control"%> 
 			</div>
 			<div class="form-group">
-				<%= f.label :email, "Email" %>
+				<%= f.label :email, "Email:" %>
 				<%= f.email_field :email, class: "form-control"%> 
 			</div>
 			<div class="form-group">
-				<%= f.label :bio, "Bio" %>
+				<%= f.label :bio, "About Me:" %>
 				<%= f.text_area :bio, class: "form-control"%> 
 			</div>
-			<div class="input-group">
-        <p>Image<p>
-        <%= f.file_field :avatar %>
-        </br>  
       <div class="form_row">
 			  <label for="interests[]">Interests:</label>
 			  <br><%= check_box_tag 'interests[]', 'html' %> HTML
 			  <br><%= check_box_tag 'interests[]', 'css' %> CSS
 			  <br><%= check_box_tag 'interests[]', 'node.js' %> Node.JS
-			  <br><%= check_box_tag 'interests[]', 'javascript' %> JavaScriipt
+			  <br><%= check_box_tag 'interests[]', 'javascript' %> JavaScript
 			  <br><%= check_box_tag 'interests[]', 'ruby' %> Ruby
 			  <br><%= check_box_tag 'interests[]', 'angular' %> Angular
 			  <br><%= check_box_tag 'interests[]', 'swift' %> Swift
 			</div>
 			<div> 
       </div>
-			<%= f.submit "Edit Profile", class: "btn btn-warning"%>
+      <div class="input-group">
+        <h5>Image:<h5>
+        <%= f.file_field :avatar %> 
+      </div>
+      <div align="center">
+			<%= f.submit "Add Changes", class: "btn btn-link"%>
+			</div>
 		<% end %> 
 	</div>
 </div>
